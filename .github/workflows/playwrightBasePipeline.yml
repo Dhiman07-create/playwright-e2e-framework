@@ -27,7 +27,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: write     # ✅ required for gh-pages deployment
       pages: write        # ✅ required for Pages
@@ -61,6 +61,7 @@ jobs:
 
       - name: Capture test status
         id: capture-test-status
+        if: always()
         run: |
           echo "Run tests outcome: ${{ steps.run-tests.outcome }}"
           if [[ "${{ steps.run-tests.outcome }}" == "success" ]]; then
